@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcoo|Gallery</title>
+ <link rel="icon" type="image/x-icon" href="BG_LOG.jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+<style>
+  body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /*Nav Area*/
+
+  nav {
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+        height: 80px;
+    }
+      .sub-menu {
+   display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    z-index: 2;
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+      .sub-menu li {
+    margin: 10px 0;
+  }
+      .menu li:hover .sub-menu {
+      display: block;
+    }
+      .sub-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+  }
+
+  .sub-menu li a:hover {
+    color: #d45f06;
+  }
+
+    .logo {
+      width: 80px; /* Adjust the width as needed */
+      height: 100px; /* Adjust the height as needed */
+      overflow: hidden;
+    }
+
+    .logo img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+        margin: 15px 2px;
+    }
+
+    .menu {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    align-items: center;
+    }
+
+    .menu li {
+      position: relative;
+    padding: 0 30px;
+    }
+
+    .menu li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+        display: block;
+        padding: 10px;
+    }
+
+    .menu li a:hover {
+      color: #e39a23;
+    }
+      .hamburger {
+      display: none;
+    }
+      /* Media query for mobile screens */
+    @media only screen and (max-width: 600px) {
+      .menu {
+        display: none;
+      }
+
+      .menu.show {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+      }
+
+      .menu.show li {
+        padding: 10px;
+      }
+
+      .menu.show li a {
+        padding: 0;
+      }
+
+      .hamburger {
+        display: block;
+        font-size: 30px;
+        width: 40px;
+        height: 40px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+      }
+
+    }
+
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 100vh;
+    padding-bottom: 20px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-image: linear-gradient(to bottom, #eeb909, black);
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    animation: glow 2s infinite alternate;
+  }
+
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 10px #021406, 0 0 20px #de5404;
+    }
+    100% {
+      box-shadow: 0 0 20px #110802, 0 0 40px #d63402;
+    }
+  }
+
+  .photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    padding: 20px;
+    margin-bottom: 230px;
+  }
+
+  .photo-gallery img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 10px;
+    border-radius: 5px;
+  }
+
+  /*footer area*/
+
+  .fa {
+    padding: 10px;
+    font-size: 20px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 5px;
+    color: #fe2121;
+    transition: 0.45s ease;
+  }
+
+  .fa:hover {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+
+  footer {
+    background-color: #2e2e2e;
+    color: #f3f3f3;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+
+.footer-upper {
+    padding: 0 20px;
+  }
+
+  .footer-bottom {
+    background-color: #505050;
+    padding: 15px 0;
+  }
+
+  .footer-bottom p {
+    word-spacing: 3px;
+    text-transform: capitalize;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-bottom span {
+    text-transform: uppercase;
+    opacity: .4;
+    font-weight: 200;
+  }
+
+  /* Custom CSS for filtering */
+  .hide {
+    display: none;
+  }
+
+  .show-wallpapers[Names="wallpaper"]:not(.hide),
+  .show-products[Names="product"]:not(.hide) {
+    display: block;
+  }
+    /*modal*/
+    
+    /* Modal CSS */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9); /* Background color with transparency */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.close {
+  color: white;
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="Junrysburger.html" class="logo">
+      <img src="BG_LOG.jpg" alt="Logo">
+    </a>
+    <ul class="menu">
+      <li><a href="Junrysburger.html">Home</a></li>
+      <li><a href="Junrysburger.html#l">Product</a></li>
+      <li><a href="Gallery.html">Gallery</a></li>
+      <li>
+          <a href="#">About Us</a>
+          <ul class="sub-menu">
+        <li><a href="Aboutus.html#cam">About Company</a></li>
+        <li><a href="Aboutus.html#aut">Authors</a></li>
+        <li><a href="Junrysburger.html#footer">Contact Us</a></li>
+      </ul>
+        </li>
+    </ul>
+      <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+  </nav>
+
+<div class="container">
+  <div class="photo-gallery">
+    <img class="zoomable" src="checkinburger.jpg" Names="wallpaper" alt="Photo 1">
+<img class="zoomable" src="beefburger.jpg" Names="wallpaper" alt="Photo 1">
+      <img class="zoomable" src="BG_LOG.jpg" Names="wallpaper" alt="Photo 1">
+      <img class="zoomable" src="bg_burger.jpg" Names="wallpaper" alt="Photo 1">
+      
+
+    <img class="zoomable" src="classic2.jpg" Names="product" alt="Photo 2">
+<img class="zoomable" src="beef_burger.png" Names="product" alt="Photo 3">
+<img class="zoomable" src="chickenburger1.jpg" Names="product" alt="Photo 4">
+<img class="zoomable" src="clasic burger.png" Names="product" alt="Photo 5">
+<img class="zoomable" src="BACONBURGER.jpg" Names="product" alt="Photo 6">
+<img class="zoomable" src="IMAGE1.jpg" Names="product" alt="Photo 7">
+<img class="zoomable" src="IMAGE2.jpg" Names="product" alt="Photo 8">
+<img class="zoomable" src="IMAGE3.jpg" Names="product" alt="Photo 9">
+<img class="zoomable" src="IMAGE4.jpg" Names="product" alt="Photo 10">
+<img class="zoomable" src="IMAGE6.jpg" Names="product" alt="Photo 11">
+    <img class="zoomable" src="3djunry.png" Names="packages" alt="Photo 12">
+  </div>
+  
+</div>
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+  <span class="close" id="closeModal">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+
+
+<footer>
+<div class="button-container">
+    <a href="#" class="button" onclick="showAll()">All</a>
+    <a href="#" class="button" onclick="showWallpapers()">Wallpaper</a>
+    <a href="#" class="button" onclick="showProductCommercial()">Product & Commercial</a>
+    <a href="#" class="button" onclick="showProductPackaging()">Product Packaging</a>
+  </div>
+<script>
+
+  function showAll() {
+    const gallery = document.getElementsByClassName("photo-gallery")[0];
+    const images = gallery.getElementsByTagName("img");
+    for (let i = 0; i < images.length; i++) {
+      images[i].classList.remove("hide");
+    }
+  }
+
+  function showWallpapers() {
+    const gallery = document.getElementsByClassName("photo-gallery")[0];
+    const images = gallery.getElementsByTagName("img");
+    for (let i = 0; i < images.length; i++) {
+      const image = images[i];
+      if (image.getAttribute("Names") !== "wallpaper") {
+        image.classList.add("hide");
+      } else {
+        image.classList.remove("hide");
+      }
+    }
+  }
+
+  function ProductCommercial() {
+    const gallery = document.getElementsByClassName("photo-gallery")[0];
+    const images = gallery.getElementsByTagName("img");
+    for (let i = 0; i < images.length; i++) {
+      const image = images[i];
+      if (image.getAttribute("Names") !== "product") {
+        image.classList.add("hide");
+      } else {
+        image.classList.remove("hide");
+      }
+    }
+  }
+
+function ProductPackaging() {
+    const gallery = document.getElementsByClassName("photo-gallery")[0];
+    const images = gallery.getElementsByTagName("img");
+    for (let i = 0; i < images.length; i++) {
+      const image = images[i];
+      if (image.getAttribute("Names") !== "packages") {
+        image.classList.add("hide");
+      } else {
+        image.classList.remove("hide");
+      }
+    }
+  }
+
+//navbar script
+
+
+      //menu script
+      function toggleMenu() {
+      var menu = document.querySelector('.menu');
+      menu.classList.toggle('show');
+    }
+    
+    //modal script
+    
+    // JavaScript to open and close the modal
+var openModalBtn = document.getElementById('openModalBtn');
+var modal = document.getElementById('myModal');
+var closeModalBtn = document.getElementById('closeModal');
+var modalImage = document.getElementById('modalImage');
+
+// Open the modal when an image is clicked
+var images = document.querySelectorAll('.zoomable');
+images.forEach(function (image) {
+  image.addEventListener('click', function () {
+    modal.style.display = 'block';
+    modalImage.src = image.src;
+  });
+});
+
+// Close the modal when the close button is clicked
+closeModalBtn.onclick = function () {
+  modal.style.display = 'none';
+}
+
+// Close the modal when clicking anywhere outside the modal content
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+}
+
+
+    
+    
+</script>
+
+</body>
+</html>

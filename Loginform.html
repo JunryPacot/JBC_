@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login & Register Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="Loginstyle.css">
+</head>
+<body>
+  <div class="container">
+    <h2 class="heading" id="formTitle">Login Form</h2>
+
+    <div class="note" id="noteBox">
+      <strong>Note:</strong> Your credentials are saved in your browser. Use them next time to log in.
+    </div>
+
+    <form name="userForm" onsubmit="return handleForm()">
+      <div class="form-group">
+        <label>Username:</label>
+        <input type="text" name="name" required>
+      </div>
+     <div class="form-group" style="position: relative;">
+  <label>Password:</label>
+  <input type="password" name="password" id="passwordInput" required>
+  <span class="toggle-password" onclick="togglePassword()">👁️</span>
+</div>
+      <div class="form-group">
+        <button type="submit" id="submitBtn">Log In</button>
+      </div>
+    </form>
+
+    <div class="toggle-link" onclick="toggleMode()">Don't have an account? Register here</div>
+    <div id="messageBox" class="message"></div>
+  </div>
+
+  <script>
+    let isRegisterMode = false;
+
+    function handleForm() {
+      const username = document.userForm.name.value.trim();
+      const password = document.userForm.password.value.trim();
+      const msgBox = document.getElementById("messageBox");
+
+      const savedUsername = localStorage.getItem("username");
+      const savedPassword = localStorage.getItem("password");
+
+      if (isRegisterMode) {
+        if (savedUsername && username === savedUsername) {
+          msgBox.innerHTML = "❌ Username already exists. Try logging in.";
+          msgBox.className = "message error";
+        } else {
+          localStorage.setItem("username", username);
+          localStorage.setItem("password", password);
+          msgBox.innerHTML = "✅ Account created successfully! You can now log in.";
+          msgBox.className = "message success";
+          toggleMode();
+        }
+      } else {
+        if (username === savedUsername && password === savedPassword) {
+          msgBox.innerHTML = "✅ Welcome to Junry's Burger Company, <strong>" + username + "</strong>!";
+          msgBox.className = "message success";
+          setTimeout(() => {
+            window.location.href = "Junrysburger.html";
+          }, 1500);
+        } else {
+          msgBox.innerHTML = "❌ Incorrect username or password.";
+          msgBox.className = "message error";
+        }
+      }
+
+      msgBox.style.display = "block";
+      return false;
+    }
+
+    function toggleMode() {
+      isRegisterMode = !isRegisterMode;
+
+      const title = document.getElementById("formTitle");
+      const note = document.getElementById("noteBox");
+      const btn = document.getElementById("submitBtn");
+      const toggleLink = document.querySelector(".toggle-link");
+
+      if (isRegisterMode) {
+        title.innerText = "Register Account";
+        btn.innerText = "Register";
+        note.innerHTML = "<strong>Note:</strong> Create a new account. Your data is saved locally.";
+        toggleLink.innerText = "Already have an account? Log in here";
+      } else {
+        title.innerText = "Login Form";
+        btn.innerText = "Log In";
+        note.innerHTML = "<strong>Note:</strong> Your credentials are saved in your browser. Use them next time to log in.";
+        toggleLink.innerText = "Don't have an account? Register here";
+      }
+
+      const msgBox = document.getElementById("messageBox");
+      msgBox.style.display = "none";
+      msgBox.innerHTML = "";
+    }
+
+    function togglePassword() {
+      const input = document.getElementById("passwordInput");
+      const toggle = document.querySelector(".toggle-password");
+
+      if (input.type === "password") {
+        input.type = "text";
+        toggle.textContent = "❌";
+      } else {
+        input.type = "password";
+        toggle.textContent = "👁️";
+      }
+    }
+  </script>
+</body>
+</html>
+
