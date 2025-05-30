@@ -7,7 +7,7 @@
     
 }
 body {
-    background-image: url('bg_burger.jpg');
+    background-image: url('https://junrypacot.github.io/JBC_/bg_burger.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -72,11 +72,11 @@ h2 {
     border-radius: 10px;
 }
 .image1 {
-    background-image: url('junry.jpg');
+    background-image: url('https://junrypacot.github.io/JBC_/junry.jpg');
     background-size: cover;
 }
 .resume {
-    background-image: url('resume.jpg');
+    background-image: url('https://junrypacot.github.io/JBC_/resume.jpg');
     background-size: cover;
     background-position: center;
     height: 160vh; /* Responsive height */
@@ -127,7 +127,7 @@ h2 {
         margin: 5px;
     }
     .image {
-        background-image: url('bg_burger.jpg');
+        background-image: url('https://junrypacot.github.io/JBC_/bg_burger.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         display: flex;
