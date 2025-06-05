@@ -203,10 +203,20 @@
       }
     });
       //menu script
-      function toggleMenu() {
+      function toggleMenu() {ß
       var menu = document.querySelector('.menu');
       menu.classList.toggle('show');
     }
+  </script>
+  <script>
+  // Redirect to login page if not logged in
+  if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = 'Loginform.html';
+  }
+
+  // On logout
+  localStorage.removeItem('isLoggedIn');
+  window.location.href = 'Loginform.html';
   </script>
 </body>
 </html>
