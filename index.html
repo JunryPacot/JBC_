@@ -209,14 +209,15 @@
     }
   </script>
   <script>
-  // Redirect to login page if not logged in
-  if (localStorage.getItem('isLoggedIn') !== 'true') {
-    window.location.href = 'loginform.html';
-  }
-      
- // On logout
-  localStorage.removeItem('isLoggedIn');
-  window.location.href = 'index.html';
+ if (localStorage.getItem('isLoggedIn') !== 'true') {
+      window.location.href = 'loginform.html';
+    }
+
+    // ✅ Logout logic when button is clicked
+    document.getElementById('logoutBtn').addEventListener('click', function () {
+      localStorage.removeItem('isLoggedIn');
+      window.location.href = 'loginform.html'; // or index.html depending on your design
+    });
  
   </script>
 </body>
