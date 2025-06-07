@@ -211,9 +211,12 @@
   <script>
   // Redirect to login page if not logged in
   if (localStorage.getItem('isLoggedIn') !== 'true') {
-    window.location.href = 'Loginform.html';
+    window.location.href = 'index.html';
   }
-
+      
+ // On logout
+  localStorage.removeItem('isLoggedIn');
+  window.location.href = 'Loginform.html';
  
   </script>
 </body>
