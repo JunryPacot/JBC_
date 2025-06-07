@@ -22,7 +22,7 @@
         <li><a href="Aboutus.html">About Company</a></li>
         <li><a href="Aboutus.html">Author</a></li>
         <li><a href="index.html">Contact Us</a></li>
-        <li><a href="Loginform.html">Logout</a></li>
+       <li><a href="#" onclick="logout()">Logout</a></li>
       </ul>
         </li>
     </ul>
@@ -207,18 +207,16 @@
       var menu = document.querySelector('.menu');
       menu.classList.toggle('show');
     }
-  </script>
-  <script>
- if (localStorage.getItem('isLoggedIn') !== 'true') {
-      window.location.href = 'Loginform.html';
-    }
 
-    // ✅ Logout logic when button is clicked
-    document.getElementById('logoutBtn').addEventListener('click', function () {
-      localStorage.removeItem('isLoggedIn');
-      window.location.href = 'index.html'; // or index.html depending on your design
-    });
+       if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = 'Loginform.html';
+  }
+
+  // 🔓 Logout function
+  function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = 'Loginform.html'; // Redirect to login page
+  }
  
-  </script>
 </body>
 </html>
